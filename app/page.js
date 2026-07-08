@@ -1,10 +1,46 @@
+import data from "../data/latest.json";
+
+function Card({ title, value, color }) {
+  return (
+    <div
+      style={{
+        background: "#ffffff",
+        borderRadius: "20px",
+        padding: "20px",
+        boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+      }}
+    >
+      <p
+        style={{
+          color: "#64748b",
+          marginBottom: "10px",
+          fontSize: "14px",
+        }}
+      >
+        {title}
+      </p>
+
+      <h2
+        style={{
+          color: color,
+          margin: 0,
+          fontSize: "28px",
+        }}
+      >
+        {value}
+      </h2>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <div
       style={{
         minHeight: "100vh",
-        background: "#f8fafc",
         padding: "20px",
+        background:
+          "linear-gradient(135deg,#ecfdf5,#f8fafc)",
         fontFamily: "Arial, sans-serif",
       }}
     >
@@ -18,8 +54,7 @@ export default function Home() {
           style={{
             color: "#166534",
             fontSize: "42px",
-            fontWeight: "bold",
-            marginBottom: "10px",
+            marginBottom: "5px",
           }}
         >
           🌰 ಅಡಿಕೆ ಬೆಲೆ ಮುನ್ಸೂಚನೆ
@@ -28,85 +63,91 @@ export default function Home() {
         <p
           style={{
             color: "#64748b",
-            marginBottom: "30px",
+            marginBottom: "25px",
           }}
         >
           ಭಾರತದ ಅಡಿಕೆ ಮಾರುಕಟ್ಟೆ ವಿಶ್ಲೇಷಣೆ
         </p>
 
-        {/* Cards */}
+        {/* TOP CARDS */}
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit,minmax(250px,1fr))",
+            gridTemplateColumns:
+              "repeat(auto-fit,minmax(250px,1fr))",
             gap: "20px",
           }}
         >
           <Card
-            title="ಚನ್ನಗಿರಿ ಬೆಲೆ"
-            value="₹60,850"
-            color="#16a34a"
-          />
-
-          <Card
-            title="ಕರ್ನಾಟಕ ಆಗಮನ"
-            value="13,200"
+            title="ಚನ್ನಗಿರಿ ಮಾರುಕಟ್ಟೆ"
+            value={data.market}
             color="#2563eb"
           />
 
           <Card
-            title="ಭಾರತ ಆಗಮನ"
-            value="21,450"
-            color="#d97706"
+            title="ಇಂದಿನ ಬೆಲೆ"
+            value={`₹${data.price}`}
+            color="#16a34a"
           />
 
           <Card
-            title="ಮುನ್ಸೂಚನೆ"
-            value="🔴 ಹೆಚ್ಚು"
-            color="#dc2626"
+            title="ಭಾರತ ಆಗಮನ"
+            value={data.indiaArrival}
+            color="#f59e0b"
+          />
+
+          <Card
+            title="ಕರ್ನಾಟಕ ಆಗಮನ"
+            value={data.karnatakaArrival}
+            color="#7c3aed"
           />
         </div>
 
-        {/* Main Dashboard */}
+        {/* SECOND ROW */}
 
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "2fr 1fr",
+            gridTemplateColumns:
+              "2fr 1fr",
             gap: "20px",
             marginTop: "25px",
           }}
         >
+          {/* CHART */}
+
           <div
             style={{
               background: "white",
               borderRadius: "20px",
-              padding: "20px",
-              boxShadow: "0 4px 20px rgba(0,0,0,.08)",
+              padding: "25px",
+              boxShadow:
+                "0 4px 20px rgba(0,0,0,.08)",
             }}
           >
             <h2>📈 ಬೆಲೆ ಪ್ರವೃತ್ತಿ</h2>
 
             <div
               style={{
-                height: "250px",
+                height: "260px",
                 display: "flex",
                 alignItems: "end",
-                gap: "15px",
-                marginTop: "30px",
+                gap: "12px",
+                marginTop: "20px",
               }}
             >
-              {[60, 80, 120, 140, 170, 200, 220].map(
-                (v, i) => (
+              {[80, 120, 150, 180, 160, 210, 240].map(
+                (h, i) => (
                   <div
                     key={i}
                     style={{
                       flex: 1,
-                      height: `${v}px`,
                       background:
-                        "linear-gradient(#22c55e,#166534)",
-                      borderRadius: "10px 10px 0 0",
+                        "linear-gradient(#22c55e,#15803d)",
+                      height: `${h}px`,
+                      borderRadius:
+                        "10px 10px 0 0",
                     }}
                   />
                 )
@@ -116,7 +157,8 @@ export default function Home() {
             <div
               style={{
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent:
+                  "space-between",
                 marginTop: "10px",
               }}
             >
@@ -130,38 +172,37 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Pie Chart */}
+          {/* PIE CHART */}
 
           <div
             style={{
               background: "white",
               borderRadius: "20px",
-              padding: "20px",
-              boxShadow: "0 4px 20px rgba(0,0,0,.08)",
+              padding: "25px",
+              boxShadow:
+                "0 4px 20px rgba(0,0,0,.08)",
             }}
           >
-            <h2>🥥 ಆಗಮನ ಹಂಚಿಕೆ</h2>
+            <h2>📊 ಆಗಮನ ಹಂಚಿಕೆ</h2>
 
             <div
               style={{
-                width: "250px",
-                height: "250px",
+                width: "220px",
+                height: "220px",
                 margin: "20px auto",
                 borderRadius: "50%",
                 background:
-                  "conic-gradient(#16a34a 0% 60%, #facc15 60% 85%, #ef4444 85% 100%)",
+                  "conic-gradient(#22c55e 0% 60%, #facc15 60% 85%, #ef4444 85% 100%)",
               }}
             ></div>
 
-            <div>
-              <p>🟢 ಕರ್ನಾಟಕ - 60%</p>
-              <p>🟡 ಕೇರಳ - 25%</p>
-              <p>🔴 ಇತರೆ - 15%</p>
-            </div>
+            <p>🟢 ಕರ್ನಾಟಕ - 60%</p>
+            <p>🟡 ಕೇರಳ - 25%</p>
+            <p>🔴 ಇತರೆ ರಾಜ್ಯಗಳು - 15%</p>
           </div>
         </div>
 
-        {/* Bottom Section */}
+        {/* PREDICTION */}
 
         <div
           style={{
@@ -169,50 +210,70 @@ export default function Home() {
             background: "white",
             borderRadius: "20px",
             padding: "25px",
-            boxShadow: "0 4px 20px rgba(0,0,0,.08)",
+            boxShadow:
+              "0 4px 20px rgba(0,0,0,.08)",
+          }}
+        >
+          <h2>🤖 AI ಮುನ್ಸೂಚನೆ</h2>
+
+          <h1
+            style={{
+              color: "#dc2626",
+              fontSize: "40px",
+            }}
+          >
+            {data.prediction}
+          </h1>
+
+          <p>
+            ಇಂದಿನ ಆಗಮನ ಪ್ರಮಾಣ ಮತ್ತು
+            ಮಾರುಕಟ್ಟೆ ಪ್ರವೃತ್ತಿಯನ್ನು ಆಧರಿಸಿ
+            ಲೆಕ್ಕ ಹಾಕಲಾಗಿದೆ.
+          </p>
+        </div>
+
+        {/* MARKET REPORT */}
+
+        <div
+          style={{
+            marginTop: "25px",
+            background: "white",
+            borderRadius: "20px",
+            padding: "25px",
+            boxShadow:
+              "0 4px 20px rgba(0,0,0,.08)",
           }}
         >
           <h2>📋 ಇಂದಿನ ಮಾರುಕಟ್ಟೆ ವರದಿ</h2>
 
-          <p style={{ lineHeight: "2" }}>
-            ಇಂದಿನ ಕರ್ನಾಟಕ ಅಡಿಕೆ ಆಗಮನ ಪ್ರಮಾಣ ಕಡಿಮೆಯಾಗಿದೆ.
-            ಚನ್ನಗಿರಿ ಮಾರುಕಟ್ಟೆಯಲ್ಲಿ ಉತ್ತಮ ಬೇಡಿಕೆ
-            ಕಂಡುಬಂದಿದೆ. ಮುಂದಿನ 7 ದಿನಗಳಲ್ಲಿ
-            ಬೆಲೆ ಹೆಚ್ಚಾಗುವ ಸಾಧ್ಯತೆ ಇದೆ.
+          <p>
+            ಮಾರುಕಟ್ಟೆ: {data.market}
+          </p>
+
+          <p>
+            ಇಂದಿನ ಬೆಲೆ: ₹{data.price}
+          </p>
+
+          <p>
+            ಭಾರತದ ಒಟ್ಟು ಆಗಮನ:
+            {data.indiaArrival}
+          </p>
+
+          <p>
+            ಕರ್ನಾಟಕ ಆಗಮನ:
+            {data.karnatakaArrival}
+          </p>
+
+          <p>
+            ಇಂದಿನ ಮುನ್ಸೂಚನೆ:
+            {data.prediction}
+          </p>
+
+          <p>
+            ಕೊನೆಯ ನವೀಕರಣ:
+            {data.date}
           </p>
         </div>
-      </div>
-    </div>
-  );
-}
-
-function Card({ title, value, color }) {
-  return (
-    <div
-      style={{
-        background: "white",
-        padding: "25px",
-        borderRadius: "18px",
-        boxShadow: "0 4px 20px rgba(0,0,0,.08)",
-      }}
-    >
-      <div
-        style={{
-          color: "#64748b",
-          marginBottom: "10px",
-        }}
-      >
-        {title}
-      </div>
-
-      <div
-        style={{
-          fontSize: "30px",
-          fontWeight: "bold",
-          color,
-        }}
-      >
-        {value}
       </div>
     </div>
   );
