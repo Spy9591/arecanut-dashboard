@@ -1,0 +1,40 @@
+name: Daily Arecanut Update
+
+on:
+  schedule:
+    - cron: "30 0 * * *"
+
+  workflow_dispatch:
+
+jobs:
+  u*date:
+    runs-on: ubuntu-latest
+
+*   steps:
+      - name: Checkout R*pository
+        uses: actions/che*kout@v4
+
+      - name: Update Data*        run: |
+          mkdir -p *ata
+
+          cat > data/latest.j*on << EOF
+          {
+            *date":"$(date +%F)",
+            "*arket":"ಚನ್ನಗಿರಿ",
+            "pr*ce":61000,
+            "indiaArriv*l":22000,
+            "karnatakaAr*ival":14000,
+            "predicti*n":"ಹೆಚ್ಚು"
+          }
+          *OF
+
+      - name: Commit Changes
+ *      run: |
+          git config *ser.name "github-actions"
+        * git config user.email "actions@gi*hub.com"
+
+          git add .
+
+   *      git commit -m "Daily Update"*|| exit 0
+
+          git push
