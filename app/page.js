@@ -1,34 +1,44 @@
 import data from "../data/latest.json";
 
+const commodities = [
+  { name: "ಕೊಪ್ಪರಿ", price: 20142, arrival: 38 },
+  { name: "ಎಳ್ಳು", price: 12866, arrival: 815 },
+  { name: "ಉದ್ದು", price: 8188, arrival: 1613 },
+  { name: "ಸೋಯಾಬೀನ್", price: 6682, arrival: 12413 },
+  { name: "ತೊಗರಿ", price: 7525, arrival: 1770 },
+  { name: "ಈರುಳ್ಳಿ", price: 1688, arrival: 18758 }
+];
+
 function Card({ title, value, color }) {
   return (
     <div
       style={{
-        background: "#ffffff",
+        background: "rgba(255,255,255,0.85)",
+        backdropFilter: "blur(10px)",
         borderRadius: "20px",
         padding: "20px",
-        boxShadow: "0 4px 20px rgba(0,0,0,0.08)",
+        boxShadow: "0 8px 25px rgba(0,0,0,0.08)"
       }}
     >
-      <p
+      <div
         style={{
-          color: "#64748b",
-          marginBottom: "10px",
           fontSize: "14px",
+          color: "#64748b",
+          marginBottom: "10px"
         }}
       >
         {title}
-      </p>
+      </div>
 
-      <h2
+      <div
         style={{
-          color: color,
-          margin: 0,
-          fontSize: "28px",
+          fontSize: "30px",
+          fontWeight: "bold",
+          color: color
         }}
       >
         {value}
-      </h2>
+      </div>
     </div>
   );
 }
@@ -38,49 +48,49 @@ export default function Home() {
     <div
       style={{
         minHeight: "100vh",
-        padding: "20px",
         background:
           "linear-gradient(135deg,#ecfdf5,#f8fafc)",
-        fontFamily: "Arial, sans-serif",
+        padding: "20px",
+        fontFamily: "Arial,sans-serif"
       }}
     >
       <div
         style={{
           maxWidth: "1400px",
-          margin: "auto",
+          margin: "auto"
         }}
       >
         <h1
           style={{
-            color: "#166534",
             fontSize: "42px",
-            marginBottom: "5px",
+            color: "#166534",
+            marginBottom: "10px"
           }}
         >
-          🌰 ಅಡಿಕೆ ಬೆಲೆ ಮುನ್ಸೂಚನೆ
+          🌾 ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್
         </h1>
 
         <p
           style={{
             color: "#64748b",
-            marginBottom: "25px",
+            marginBottom: "25px"
           }}
         >
-          ಭಾರತದ ಅಡಿಕೆ ಮಾರುಕಟ್ಟೆ ವಿಶ್ಲೇಷಣೆ
+          ಭಾರತದ ಕೃಷಿ ಬೆಲೆ ಮತ್ತು ಆಗಮನ ವಿಶ್ಲೇಷಣೆ
         </p>
 
-        {/* TOP CARDS */}
+        {/* KPI Cards */}
 
         <div
           style={{
             display: "grid",
             gridTemplateColumns:
               "repeat(auto-fit,minmax(250px,1fr))",
-            gap: "20px",
+            gap: "20px"
           }}
         >
           <Card
-            title="ಚನ್ನಗಿರಿ ಮಾರುಕಟ್ಟೆ"
+            title="ಮಾರುಕಟ್ಟೆ"
             value={data.market}
             color="#2563eb"
           />
@@ -104,7 +114,7 @@ export default function Home() {
           />
         </div>
 
-        {/* SECOND ROW */}
+        {/* Chart Row */}
 
         <div
           style={{
@@ -112,42 +122,40 @@ export default function Home() {
             gridTemplateColumns:
               "2fr 1fr",
             gap: "20px",
-            marginTop: "25px",
+            marginTop: "25px"
           }}
         >
-          {/* CHART */}
-
           <div
             style={{
               background: "white",
               borderRadius: "20px",
               padding: "25px",
               boxShadow:
-                "0 4px 20px rgba(0,0,0,.08)",
+                "0 8px 25px rgba(0,0,0,0.08)"
             }}
           >
-            <h2>📈 ಬೆಲೆ ಪ್ರವೃತ್ತಿ</h2>
+            <h2>📈 ಮಾರುಕಟ್ಟೆ ಪ್ರವೃತ್ತಿ</h2>
 
             <div
               style={{
                 height: "260px",
                 display: "flex",
-                alignItems: "end",
                 gap: "12px",
-                marginTop: "20px",
+                alignItems: "end",
+                marginTop: "25px"
               }}
             >
-              {[80, 120, 150, 180, 160, 210, 240].map(
-                (h, i) => (
+              {[90, 140, 110, 180, 170, 220, 250].map(
+                (v, i) => (
                   <div
                     key={i}
                     style={{
                       flex: 1,
-                      background:
-                        "linear-gradient(#22c55e,#15803d)",
-                      height: `${h}px`,
+                      height: `${v}px`,
                       borderRadius:
-                        "10px 10px 0 0",
+                        "12px 12px 0 0",
+                      background:
+                        "linear-gradient(#22c55e,#166534)"
                     }}
                   />
                 )
@@ -159,7 +167,7 @@ export default function Home() {
                 display: "flex",
                 justifyContent:
                   "space-between",
-                marginTop: "10px",
+                marginTop: "10px"
               }}
             >
               <span>ಸೋಮ</span>
@@ -172,15 +180,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* PIE CHART */}
-
           <div
             style={{
               background: "white",
               borderRadius: "20px",
               padding: "25px",
               boxShadow:
-                "0 4px 20px rgba(0,0,0,.08)",
+                "0 8px 25px rgba(0,0,0,0.08)"
             }}
           >
             <h2>📊 ಆಗಮನ ಹಂಚಿಕೆ</h2>
@@ -189,20 +195,21 @@ export default function Home() {
               style={{
                 width: "220px",
                 height: "220px",
-                margin: "20px auto",
                 borderRadius: "50%",
+                margin: "20px auto",
                 background:
-                  "conic-gradient(#22c55e 0% 60%, #facc15 60% 85%, #ef4444 85% 100%)",
+                  "conic-gradient(#22c55e 0% 45%, #facc15 45% 75%, #3b82f6 75% 90%, #ef4444 90% 100%)"
               }}
-            ></div>
+            />
 
-            <p>🟢 ಕರ್ನಾಟಕ - 60%</p>
-            <p>🟡 ಕೇರಳ - 25%</p>
-            <p>🔴 ಇತರೆ ರಾಜ್ಯಗಳು - 15%</p>
+            <p>🟢 ಧಾನ್ಯಗಳು</p>
+            <p>🟡 ಎಣ್ಣೆ ಬೀಜಗಳು</p>
+            <p>🔵 ಕಾಳುಗಳು</p>
+            <p>🔴 ತರಕಾರಿಗಳು</p>
           </div>
         </div>
 
-        {/* PREDICTION */}
+        {/* Commodities */}
 
         <div
           style={{
@@ -211,28 +218,80 @@ export default function Home() {
             borderRadius: "20px",
             padding: "25px",
             boxShadow:
-              "0 4px 20px rgba(0,0,0,.08)",
+              "0 8px 25px rgba(0,0,0,0.08)"
           }}
         >
-          <h2>🤖 AI ಮುನ್ಸೂಚನೆ</h2>
+          <h2>🏆 ಪ್ರಮುಖ ವಸ್ತುಗಳು</h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns:
+                "repeat(auto-fit,minmax(220px,1fr))",
+              gap: "15px",
+              marginTop: "20px"
+            }}
+          >
+            {commodities.map((item) => (
+              <div
+                key={item.name}
+                style={{
+                  background: "#f8fafc",
+                  borderLeft:
+                    "5px solid #16a34a",
+                  borderRadius: "15px",
+                  padding: "15px"
+                }}
+              >
+                <h3>{item.name}</h3>
+
+                <h2
+                  style={{
+                    color: "#166534"
+                  }}
+                >
+                  ₹{item.price.toLocaleString()}
+                </h2>
+
+                <p>
+                  ಆಗಮನ:
+                  {item.arrival.toLocaleString()} ಟನ್
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* AI Section */}
+
+        <div
+          style={{
+            marginTop: "25px",
+            background: "white",
+            borderRadius: "20px",
+            padding: "25px",
+            boxShadow:
+              "0 8px 25px rgba(0,0,0,0.08)"
+          }}
+        >
+          <h2>🤖 AI ಬೆಲೆ ಮುನ್ಸೂಚನೆ</h2>
 
           <h1
             style={{
               color: "#dc2626",
-              fontSize: "40px",
+              marginTop: "15px"
             }}
           >
             {data.prediction}
           </h1>
 
-          <p>
-            ಇಂದಿನ ಆಗಮನ ಪ್ರಮಾಣ ಮತ್ತು
-            ಮಾರುಕಟ್ಟೆ ಪ್ರವೃತ್ತಿಯನ್ನು ಆಧರಿಸಿ
-            ಲೆಕ್ಕ ಹಾಕಲಾಗಿದೆ.
-          </p>
+          <p>🟢 ಕೊಪ್ಪರಿ ಬೆಲೆ ಏರಿಕೆ ಸಾಧ್ಯತೆ</p>
+          <p>🟢 ಎಳ್ಳು ಬೆಲೆ ಏರಿಕೆ ಸಾಧ್ಯತೆ</p>
+          <p>🟡 ಸೋಯಾಬೀನ್ ಸ್ಥಿರ</p>
+          <p>🔴 ಈರುಳ್ಳಿ ಇಳಿಕೆ ಸಾಧ್ಯತೆ</p>
         </div>
 
-        {/* MARKET REPORT */}
+        {/* Market Table */}
 
         <div
           style={{
@@ -240,39 +299,65 @@ export default function Home() {
             background: "white",
             borderRadius: "20px",
             padding: "25px",
+            overflowX: "auto",
             boxShadow:
-              "0 4px 20px rgba(0,0,0,.08)",
+              "0 8px 25px rgba(0,0,0,0.08)"
           }}
         >
-          <h2>📋 ಇಂದಿನ ಮಾರುಕಟ್ಟೆ ವರದಿ</h2>
+          <h2>📋 ಮಾರುಕಟ್ಟೆ ವಿವರ</h2>
 
-          <p>
-            ಮಾರುಕಟ್ಟೆ: {data.market}
-          </p>
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse"
+            }}
+          >
+            <thead>
+              <tr
+                style={{
+                  background: "#f1f5f9"
+                }}
+              >
+                <th style={{ padding: "12px" }}>
+                  ವಸ್ತು
+                </th>
+                <th style={{ padding: "12px" }}>
+                  ಬೆಲೆ
+                </th>
+                <th style={{ padding: "12px" }}>
+                  ಆಗಮನ
+                </th>
+              </tr>
+            </thead>
 
-          <p>
-            ಇಂದಿನ ಬೆಲೆ: ₹{data.price}
-          </p>
+            <tbody>
+              {commodities.map((item) => (
+                <tr key={item.name}>
+                  <td style={{ padding: "12px" }}>
+                    {item.name}
+                  </td>
 
-          <p>
-            ಭಾರತದ ಒಟ್ಟು ಆಗಮನ:
-            {data.indiaArrival}
-          </p>
+                  <td style={{ padding: "12px" }}>
+                    ₹{item.price.toLocaleString()}
+                  </td>
 
-          <p>
-            ಕರ್ನಾಟಕ ಆಗಮನ:
-            {data.karnatakaArrival}
-          </p>
+                  <td style={{ padding: "12px" }}>
+                    {item.arrival.toLocaleString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-          <p>
-            ಇಂದಿನ ಮುನ್ಸೂಚನೆ:
-            {data.prediction}
-          </p>
-
-          <p>
-            ಕೊನೆಯ ನವೀಕರಣ:
-            {data.date}
-          </p>
+        <div
+          style={{
+            marginTop: "25px",
+            textAlign: "center",
+            color: "#64748b"
+          }}
+        >
+          ಕೊನೆಯ ನವೀಕರಣ : {data.date}
         </div>
       </div>
     </div>
