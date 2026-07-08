@@ -3,38 +3,38 @@ name: Daily Arecanut Update
 on:
   schedule:
     - cron: "30 0 * * *"
-
   workflow_dispatch:
 
 jobs:
-  u*date:
+  update:
     runs-on: ubuntu-latest
 
-*   steps:
-      - name: Checkout R*pository
-        uses: actions/che*kout@v4
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Update Data*        run: |
-          mkdir -p *ata
+      - name: Create Data File
+        run: |
+          mkdir -p data
 
-          cat > data/latest.j*on << EOF
+          cat > data/latest.json << EOF
           {
-            *date":"$(date +%F)",
-            "*arket":"ಚನ್ನಗಿರಿ",
-            "pr*ce":61000,
-            "indiaArriv*l":22000,
-            "karnatakaAr*ival":14000,
-            "predicti*n":"ಹೆಚ್ಚು"
+            "date":"2026-07-08",
+            "market":"ಚನ್ನಗಿರಿ",
+            "price":61000,
+            "indiaArrival":22000,
+            "karnatakaArrival":14000,
+            "prediction":"ಹೆಚ್ಚು"
           }
-          *OF
+          EOF
 
       - name: Commit Changes
- *      run: |
-          git config *ser.name "github-actions"
-        * git config user.email "actions@gi*hub.com"
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
 
           git add .
 
-   *      git commit -m "Daily Update"*|| exit 0
+          git commit -m "Daily Update" || exit 0
 
           git push
